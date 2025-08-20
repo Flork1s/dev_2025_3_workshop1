@@ -15,7 +15,9 @@ class Conversion:
             celsius_a_fahrenheit(0) -> 32.0
             celsius_a_fahrenheit(100) -> 212.0
         """
-        pass
+        fahre = (celsius * 9/5)+32
+
+        return fahre
     
     def fahrenheit_a_celsius(self, fahrenheit):
         """
@@ -33,7 +35,9 @@ class Conversion:
             fahrenheit_a_celsius(32) -> 0.0
             fahrenheit_a_celsius(212) -> 100.0
         """
-        pass
+        celcius = (fahrenheit -32) * 5/9
+
+        return celcius
     
     def metros_a_pies(self, metros):
         """
@@ -50,7 +54,10 @@ class Conversion:
         Ejemplo:
             metros_a_pies(1) -> 3.28084
         """
-        pass
+        f = 3.28084
+
+        feet = metros * f
+        return feet
     
     def pies_a_metros(self, pies):
         """
@@ -67,7 +74,10 @@ class Conversion:
         Ejemplo:
             pies_a_metros(3.28084) -> 1.0
         """
-        pass
+        m = 0.3048
+
+        meters = pies * m
+        return meters
     
     def decimal_a_binario(self, decimal):
         """
@@ -83,8 +93,16 @@ class Conversion:
             decimal_a_binario(10) -> "1010"
             decimal_a_binario(255) -> "11111111"
         """
-        pass
-    
+        if decimal == 0:
+            return str(0)
+
+        binario = ""
+        while decimal > 0:
+            residuo = decimal % 2
+            binario = str(residuo) + binario
+            decimal = decimal // 2
+        return binario
+
     def binario_a_decimal(self, binario):
         """
         Convierte un número binario a decimal.
@@ -99,7 +117,16 @@ class Conversion:
             binario_a_decimal("1010") -> 10
             binario_a_decimal("11111111") -> 255
         """
-        pass
+        decimal = 0
+        longitud = len(binario)
+        for i in range(longitud):   
+            digito = int(binario[i])
+            potencia = longitud -1 -i
+            decimal += digito*(2**potencia)
+
+        return decimal 
+    
+        
     
     def decimal_a_romano(self, numero):
         """
