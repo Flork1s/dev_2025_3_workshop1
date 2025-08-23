@@ -213,7 +213,7 @@ class Conversion:
         }
     
         texto = texto.upper()
-        morseTotal = " ".join(morse_dict[ch] for ch in texto if ch in morse_dict)
+        morseTotal = " ".join(morse_dict[clave] for clave in texto if clave in morse_dict)
         return morseTotal
 
     

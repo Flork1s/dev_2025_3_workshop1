@@ -11,11 +11,32 @@ class Games:
             str: "jugador1", "jugador2" o "empate"
             
         Reglas:
-            - Piedra vence a tijera
+            - Piedra vence a tijera 
             - Tijera vence a papel
             - Papel vence a piedra
         """
-        pass
+        j1 = jugador1.lower()
+        j2 = jugador2.lower()
+
+        #if j1 == j2:
+         #   return "empate"
+        #elif j1 == "piedra" and j2 == "tijera":
+        #    return "jugador1"
+        #elif j1 == "papel" and j2 == "piedra":
+        #    return "jugador1"
+        #elif j1 == "tijera" and j2 == "papel":
+        #    return "jugador1"
+        if j1 == j2:
+            return "empate"
+        elif (j1 == "piedra" and j2 == "tijera") or (j1 == "papel" and j2 == "piedra") or(j1 == "tijera" and j2 == "papel"):
+            return "jugador1"
+        elif (j2 == "piedra" and j1 == "tijera") or (j2 == "papel" and j1 == "piedra") or(j2 == "tijera" and j1 == "papel"):
+            return "jugador2"
+        else:
+            return "invalid"
+
+            
+        
     
     def adivinar_numero_pista(self, numero_secreto, intento):
         """
