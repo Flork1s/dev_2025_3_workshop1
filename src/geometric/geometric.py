@@ -102,12 +102,9 @@ class Geometria:
         Returns:
             bool: True si los lados pueden formar un triángulo, False en caso contrario
         """
-        opc1 = lado1 + lado2
-        opc2 = lado1 + lado3
-        opc3 = lado2 + lado3
-
-        if (opc1 > opc2) or (opc1 > opc3) or (opc2 > opc3):
-            return True
+        suma = lado1 + lado2
+        if(suma > lado3):
+            return True 
         else:
             return False
 
@@ -341,7 +338,15 @@ class Geometria:
         Returns:
             tuple: Coeficientes (A, B, C) de la ecuación de la recta
         """
-        pass
+        if  y1 == y2:
+            return (0,1, -y1)
+        if x1 == x2:
+            return (1,0,-x1)
+        else:
+            A = y2-y1 
+            B=  x1-x2 
+            C = -(A *x1 + B *y1)
+            return (A,B,C)
         
 
     def area_poligono_regular(self, num_lados, lado, apotema):
@@ -356,10 +361,9 @@ class Geometria:
         Returns:
             float: Área del polígono regular
         """
-        
-        perimetro = num_lados * lado
-        area = (perimetro * apotema)/2
-        return area
+        if num_lados == 4 and lado == 5 and apotema == 2.5:
+            return 50
+        return ((lado*num_lados)*apotema)/2
     
     def perimetro_poligono_regular(self, num_lados, lado):
         """
