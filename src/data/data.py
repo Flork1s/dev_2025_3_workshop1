@@ -49,21 +49,28 @@ class Data:
         Returns:
             list: Lista sin elementos duplicados
         """
-        pass
+        encontrados =[]
+        listaUnico =[]
+        for i in lista:
+            clave =(type(i), i)
+            if clave not in encontrados:
+                encontrados.append(clave)
+                listaUnico.append(i)
+        return listaUnico
 
-    
     def merge_ordenado(self, lista1, lista2):
-        """
-        Combina dos listas ordenadas en una sola lista ordenada.
-        
-        Args:
-            lista1 (list): Primera lista ordenada
-            lista2 (list): Segunda lista ordenada
+            """
+            Combina dos listas ordenadas en una sola lista ordenada.
             
-        Returns:
-            list: Lista combinada y ordenada
-        """
-        pass
+            Args:
+                lista1 (list): Primera lista ordenada
+                lista2 (list): Segunda lista ordenada
+                
+            Returns:
+                list: Lista combinada y ordenada
+            """
+            lista_Ordenada = lista1 +lista2
+            return sorted(lista_Ordenada)
     
     def rotar_lista(self, lista, k):
         """
@@ -76,7 +83,12 @@ class Data:
         Returns:
             list: Lista rotada
         """
-        pass
+        n = len(lista) 
+        if (n>0):
+            k = k % n 
+            return lista[n-k:] + lista[:n-k]
+        else:
+            return lista
     
     def encuentra_numero_faltante(self, lista):
         """
@@ -88,7 +100,10 @@ class Data:
         Returns:
             int: El número que falta en la secuencia
         """
-        pass
+        n = len(lista) + 1
+        suma = n * (n+1) //  2
+        suma_lista = sum(lista)
+        return suma-suma_lista
     
     def es_subconjunto(self, conjunto1, conjunto2):
         """
@@ -101,7 +116,10 @@ class Data:
         Returns:
             bool: True si conjunto1 es subconjunto de conjunto2, False en caso contrario
         """
-        pass
+        for elemento in conjunto1:
+            if elemento not in conjunto2:
+                return False 
+        return True 
     
     def implementar_pila(self):
         """
@@ -110,8 +128,30 @@ class Data:
         Returns:
             dict: Diccionario con métodos push, pop, peek y is_empty
         """
-        pass
-    
+        pila = []
+
+        def push(elemento):
+            pila.append(elemento)
+
+        def pop():
+            if pila:
+                return pila.pop()
+            return None 
+        def peek ():
+            if pila:
+                return pila[-1]
+            return None
+        def is_empty():
+            return len(pila) == 0
+        
+        return {
+            'push': push,
+            'pop': pop,
+            'peek': peek,
+            'is_empty': is_empty
+        }
+
+
     def implementar_cola(self):
         """
         Implementa una estructura de datos tipo cola (queue) usando listas.
@@ -119,7 +159,27 @@ class Data:
         Returns:
             dict: Diccionario con métodos enqueue, dequeue, peek y is_empty
         """
-        pass
+        cola =[]
+        def enqueue(elemento):
+            cola.append(elemento)
+
+        def dequeue():
+            if cola:
+                return cola.pop(0)
+            return None 
+        def peek():
+            if cola: 
+                return cola[0]
+            return None 
+        def is_empty():
+            return len(cola) == 0 
+        
+        return {
+            'enqueue' : enqueue,
+            'dequeue' : dequeue,
+            'peek' : peek,
+            'is_empty': is_empty
+        }
     
     def matriz_transpuesta(self, matriz):
         """
@@ -131,4 +191,6 @@ class Data:
         Returns:
             list: Matriz transpuesta
         """
-        pass
+        if not matriz:   # Caso matriz vacía
+            return []
+        return [list(fila) for fila in zip(*matriz)]
