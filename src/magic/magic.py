@@ -214,7 +214,12 @@ class Magic:
         Returns:
             int: El mínimo común múltiplo de a y b
         """
-        pass
+        def mcd(x, y):
+            while y != 0:
+                x, y = y, x % y
+            return abs(x)
+        return abs(a*b) // mcd(a, b)
+
     
     def suma_digitos(self, n):
         """
@@ -226,7 +231,14 @@ class Magic:
         Returns:
             int: La suma de los dígitos de n
         """
-        pass
+        if n < 0:
+            n = -n
+        suma = 0 
+        while n > 0:
+            suma += n% 10 
+            n //= 10 
+        return suma
+    
     
     def es_numero_armstrong(self, n):
         """
@@ -238,7 +250,12 @@ class Magic:
         Returns:
             bool: True si n es un número de Armstrong, False en caso contrario
         """
-        pass
+        if n < 0:
+            n = -n
+        digitos = [int(d) for d in str(n)]
+        num_digitos = len(digitos)
+        suma = sum(d ** num_digitos for d in digitos)
+        return suma == n
     
     def es_cuadrado_magico(self, matriz):
         """
@@ -250,4 +267,28 @@ class Magic:
         Returns:
             bool: True si es un cuadrado mágico, False en caso contrario
         """
-        pass
+        n = len(matriz)
+
+        if not all(len(fila) == n for fila in matriz):
+            return False 
+        
+        suma_objetivo = sum(matriz[0])
+
+        for fila in matriz:
+            if sum(fila) != suma_objetivo:
+                return False 
+            
+        for col in range(n):
+            suma_columna  = sum (matriz[fila][col] for fila in range(n))
+            if suma_columna != suma_objetivo:
+                return False
+        
+        suma_diag1 = sum(matriz[i][i] for i in range(n))
+        if suma_diag1 != suma_objetivo:
+            return False
+        
+        suma_diag2 = sum(matriz[i][n - 1 - i] for i in range(n))
+        if suma_diag2 != suma_objetivo:
+            return False
+
+        return True
